@@ -2,7 +2,7 @@ pipeline {
     agent {
         kubernetes {
             cloud "kubernetes"
-            yamlFile "k8s/jenkins-agent-pod.yaml"
+            yamlFile "k8s/ci/jenkins-agent-pod.yaml"
         }
     }
     environment {
