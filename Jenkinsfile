@@ -20,6 +20,10 @@ pipeline {
                 container('docker') {
                     withCredentials([usernamePassword(credentialsId: 'docker-user-y', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                         sh 'echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin'
+                        sh '''
+                            docker build . -t ybsnek/simple-k8s-example:latest
+                            docker push ybsnek/simple-k8s-example:latest
+                        '''
                     }
                     sh "docker version"
                 }
