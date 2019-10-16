@@ -19,7 +19,7 @@ pipeline {
             steps {
                 container('docker') {
                     withCredentials([usernamePassword(credentialsId: 'docker-user-y', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
-                        sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                        sh '$DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
                     }
                     sh "docker version"
                 }
